@@ -1,82 +1,62 @@
 # Contributing
 
-Interested in contributing to the Material for MkDocs? Want to report a bug?
-Have a question? Before you do, please read the following guidelines.
+Material for MkDocs is an actively maintained and constantly improved project
+that serves a diverse user base with varying backgrounds and needs. In order to
+effectively address the needs of all our users, evaluate change requests, and
+fix bugs, we maintainers need to put in a lot of work. We have devoted
+significant effort to creating better templates for our issue tracker,
+optimizing the processes for our users to report bugs, request features or
+changes, contribute to the project, or exchange with our community.
 
-## Submission context
+Given the wealth of valuable knowledge contained in numerous issues and
+discussions, we consider our [issue tracker] and [discussion board] to serve as
+a crucial __knowledge base__ that is an important addition to our [documentation]
+and brings value to both new and experienced users of Material for MkDocs.
 
-### Got a question or problem?
+  [discussion board]: https://github.com/squidfunk/mkdocs-material/discussions
+  [issue tracker]: https://github.com/squidfunk/mkdocs-material/issues
+  [documentation]: https://squidfunk.github.io/mkdocs-material/
 
-For quick questions there's no need to open an issue as you can reach us on
-[gitter.im][1].
+## How to contribute
 
-  [1]: https://gitter.im/squidfunk/mkdocs-material
+### Creating an issue
 
-### Found a bug?
+-   #### [Report a bug]
 
-If you found a bug in the source code, you can help us by submitting an issue
-to the [issue tracker][2] in our GitHub repository. Even better, you can submit
-a Pull Request with a fix. However, before doing so, please read the
-[submission guidelines][3].
+    __Something is not working?__ Report a bug in Material for MkDocs by
+    creating an issue with a reproduction
 
-  [2]: https://github.com/squidfunk/mkdocs-material/issues
-  [3]: #submission-guidelines
+-   #### [Report a docs issue]
 
-### Missing a feature?
+    __Missing information in our docs?__ Report missing information or
+    potential inconsistencies in our documentation
 
-You can request a new feature by submitting an issue to our GitHub Repository.
-If you would like to implement a new feature, please submit an issue with a
-proposal for your work first, to be sure that it is of use for everyone, as
-Material for MkDocs is highly opinionated. Please consider what kind of change
-it is:
+-   #### [Request a change]
 
-* For a **major feature**, first open an issue and outline your proposal so
-  that it can be discussed. This will also allow us to better coordinate our
-  efforts, prevent duplication of work, and help you to craft the change so
-  that it is successfully accepted into the project.
+    __Want to submit an idea?__ Propose a change, feature request, or
+    suggest an improvement
 
-* **Small features and bugs** can be crafted and directly submitted as a Pull
-  Request. However, there is no guarantee that your feature will make it into
-  the `master`, as it's always a matter of opinion whether if benefits the
-  overall functionality of the project.
+-   #### [Ask a question]
 
-## Submission guidelines
+    __Have a question or need help?__ Ask a question on our [discussion board]
+    and get in touch with our community
 
-### Submitting an issue
+### Contributing
 
-Before you submit an issue, please search the issue tracker, maybe an issue for
-your problem already exists and the discussion might inform you of workarounds
-readily available.
+-   #### [Add a translation]
 
-We want to fix all the issues as soon as possible, but before fixing a bug we
-need to reproduce and confirm it. In order to reproduce bugs we will
-systematically ask you to provide a minimal reproduction scenario using the
-custom issue template. Please stick to the issue template.
+    __Missing support for your language?__ Add missing translations for a new
+    or already supported language
 
-Unfortunately we are not able to investigate / fix bugs without a minimal
-reproduction scenario, so if we don't hear back from you we may close the issue.
+-   #### [Create a pull request]
 
-### Submitting a Pull Request (PR)
+    __Want to create a pull request?__ Learn how to create a comprehensive
+    and useful pull request (PR)s
 
-Search GitHub for an open or closed PR that relates to your submission. You
-don't want to duplicate effort. If you do not find a related issue or PR,
-go ahead.
-
-1. **Development**: Fork the project, set up the [development environment][4],
-  make your changes in a separate git branch and add descriptive messages to
-  your commits.
-
-2. **Build**: Before submitting a pull requests, [build the theme][5]. This is
-  a mandatory requirement for your PR to get accepted, as the theme should at
-  all times be installable through GitHub.
-
-3. **Pull Request**: After building the theme, commit the compiled output, push
-  your branch to GitHub and send a PR to `mkdocs-material:master`. If we
-  suggest changes, make the required updates, rebase your branch and push the
-  changes to your GitHub repository, which will automatically update your PR.
-
-After your PR is merged, you can safely delete your branch and pull the changes
-from the main (upstream) repository.
-
-  [4]: https://squidfunk.github.io/mkdocs-material/customization/#environment-setup
-  [5]: https://squidfunk.github.io/mkdocs-material/customization/#build-process
+  [Report a bug]: docs/contributing/reporting-a-bug.md
+  [Report a docs issue]: docs/contributing/reporting-a-docs-issue.md
+  [Request a change]: docs/contributing/requesting-a-change.md
+  [Ask a question]: https://github.com/squidfunk/mkdocs-material/discussions
+  [Add a translation]: docs/contributing/adding-translations
+  [Create a pull request]: docs/contributing/making-a-pull-request.md
+  
