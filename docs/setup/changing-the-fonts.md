@@ -1,26 +1,22 @@
----
-template: overrides/main.html
----
-
 # Changing the fonts
 
 Material for MkDocs makes it easy to change the typeface of your project
-documentation, as it directly integrates with [Google Fonts][1]. Alternatively,
+documentation, as it directly integrates with [Google Fonts]. Alternatively,
 fonts can be custom-loaded if self-hosting is preferred for data privacy reasons
 or another destination should be used.
 
-  [1]: https://fonts.google.com
+  [Google Fonts]: https://fonts.google.com
 
 ## Configuration
 
 ### Regular font
 
-[:octicons-file-code-24: Source][2] ·
-:octicons-milestone-24: Default: [`Roboto`][3]
+<!-- md:version 0.1.2 -->
+<!-- md:default [`Roboto`][Roboto] -->
 
-The _regular font_ is used for all body copy, headlines, and essentially
-everything that does not need to be proportionally spaced. It can be set to any
-valid [Google Font][1] with:
+The regular font is used for all body copy, headlines, and essentially
+everything that does not need to be monospaced. It can be set to any
+valid [Google Font][Google Fonts] via `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -30,17 +26,16 @@ theme:
 
 The typeface will be loaded in 300, 400, _400i_ and __700__.
 
-  [2]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html
-  [3]: https://fonts.google.com/specimen/Roboto
+  [Roboto]: https://fonts.google.com/specimen/Roboto
 
-### Proportional font
+### Monospaced font
 
-[:octicons-file-code-24: Source][2] ·
-:octicons-milestone-24: Default: [`Roboto Mono`][4]
+<!-- md:version 0.1.2 -->
+<!-- md:default [`Roboto Mono`][Roboto Mono] -->
 
-The _proportional font_ is used for code blocks and can be configured separately.
-Just like the regular font, it can be set to any valid [Google Font][1] via
-`mkdocs.yml` with:
+The _monospaced font_ is used for code blocks and can be configured separately.
+Just like the regular font, it can be set to any valid [Google Font]
+[Google Fonts] via `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -50,63 +45,75 @@ theme:
 
 The typeface will be loaded in 400.
 
-  [4]: https://fonts.google.com/specimen/Roboto+Mono
+  [Roboto Mono]: https://fonts.google.com/specimen/Roboto+Mono
 
-## Customization
+### Autoloading
 
-If you want to load fonts from other destinations or don't want to use Google
-Fonts for [data privacy][5] reasons, e.g. _due to GDPR_, you may customize
-font loading as described below.
+<!-- md:version 1.0.0 -->
+<!-- md:default none -->
 
-### Disabling font loading
-
-[:octicons-file-code-24: Source][2] ·
-:octicons-mortar-board-24: Difficulty: _easy_
-
-If you want to prevent typefaces from being loaded from Google Fonts and fall
-back to system fonts, add the following lines to `mkdocs.yml`:
+If you want to prevent typefaces from being loaded from [Google Fonts], e.g.
+to adhere to [data privacy] regulations, and fall back to system fonts, add the
+following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
   font: false
 ```
 
+!!! tip "Automatically bundle Google Fonts"
+
+    The [built-in privacy plugin] makes it easy to use Google Fonts
+    while complying with the __General Data Protection Regulation__ (GDPR),
+    by automatically downloading and self-hosting the web font files.
+
+  [data privacy]: https://developers.google.com/fonts/faq/privacy
+  [built-in privacy plugin]:../plugins/privacy.md
+
+## Customization
+
 ### Additional fonts
 
-[:octicons-file-code-24: Source][2] ·
-:octicons-mortar-board-24: Difficulty: _easy_
-
-If you want to load an (additional) font from another  or override
-the fallback font, you can use an [additional stylesheet][8] to add the
+If you want to load an (additional) font from another destination or override
+the system font, you can use an [additional style sheet] to add the
 corresponding `@font-face` definition:
 
-``` css
-@font-face {
-  font-family: "<font>";
-  src: "...";
-}
-```
+=== ":octicons-file-code-16: `docs/stylesheets/extra.css`"
 
-The font can then be applied to specific elements, e.g. only headlines, or 
-globally to be used as the site-wide regular or proportional font:
+    ``` css
+    @font-face {
+      font-family: "<font>";
+      src: "...";
+    }
+    ```
+
+=== ":octicons-file-code-16: `mkdocs.yml`"
+
+    ``` yaml
+    extra_css:
+      - stylesheets/extra.css
+    ```
+
+The font can then be applied to specific elements, e.g. only headlines, or
+globally to be used as the site-wide regular or monospaced font:
 
 === "Regular font"
 
     ``` css
-    body, input {
-      font-family: "<font>", -apple-system, Helvetica, Arial, sans-serif;
+    :root {
+      --md-text-font: "<font>"; /* (1)! */
     }
     ```
 
-=== "Proportional font"
+    1.  Always define fonts through CSS variables and not `font-family`, as
+        this would disable the system font fallback.
+
+=== "Monospaced font"
 
     ``` css
-    pre, code, kbd {
-      font-family: "<font>", SFMono-Regular, Consolas, Menlo, monospace;
+    :root {
+      --md-code-font: "<font>";
     }
     ```
 
-  [5]: ../data-privacy.md
-  [6]: ../customization.md#extending-the-theme
-  [7]: ../customization.md#overriding-blocks
-  [8]: ../customization.md#additional-stylesheets
+  [additional style sheet]: ../customization.md#additional-css

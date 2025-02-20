@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "baseUrl": "src/assets/javascripts",
-    "declaration": false,
-    "declarationMap": false,
-    "downlevelIteration": true,
+    "baseUrl": "src",
+    "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "h",
     "lib": [
       "dom",
-      "es2017",
       "esnext",
       "webworker"
     ],
@@ -22,29 +19,23 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "browser": ["browser"],
-      "components": ["components"],
-      "integrations/*": ["integrations/*"],
-      "patches": ["patches"],
-      "templates": ["templates"],
-      "utilities": ["utilities"],
-      "workers": ["workers"]
+      "~/*": ["./templates/assets/javascripts/*"],
+      "_/*": ["./overrides/assets/javascripts/*"]
     },
     "removeComments": false,
     "sourceMap": true,
+    "skipLibCheck": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "es5"
+    "target": "es2018"
   },
   "include": [
-    "src/assets/javascripts",
-    "typings",
-    "webpack.config.ts"
-  ],
-  "exclude": [
-    "node_modules"
+    "src/overrides/assets/javascripts",
+    "src/templates/assets/javascripts",
+    "tools",
+    "typings"
   ]
 }

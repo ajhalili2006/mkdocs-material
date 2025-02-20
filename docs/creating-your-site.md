@@ -1,10 +1,6 @@
----
-template: overrides/main.html
----
-
 # Creating your site
 
-After you've [installed][1] Material for MkDocs, you can bootstrap your project 
+After you've [installed] Material for MkDocs, you can bootstrap your project
 documentation using the `mkdocs` executable. Go to the directory where you want
 your project to be located and enter:
 
@@ -14,13 +10,13 @@ mkdocs new .
 
 Alternatively, if you're running Material for MkDocs from within Docker, use:
 
-=== "Unix"
+=== "Unix, Powershell"
 
     ```
     docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material new .
     ```
 
-=== "Windows"
+=== "Windows (cmd)"
 
     ```
     docker run --rm -it -v "%cd%":/docs squidfunk/mkdocs-material new .
@@ -28,98 +24,170 @@ Alternatively, if you're running Material for MkDocs from within Docker, use:
 
 This will create the following structure:
 
-```
+``` { .sh .no-copy }
 .
 ├─ docs/
 │  └─ index.md
 └─ mkdocs.yml
 ```
 
-  [1]: getting-started.md
+  [installed]: getting-started.md
 
 ## Configuration
 
 ### Minimal configuration
 
-To enable the theme, you can now simply add the following lines to `mkdocs.yml`.
-Note that since there are several [installation methods][2], configuration will
-be slightly different:
+Simply set the `site_name` and add the following lines to `mkdocs.yml` to enable the theme:
 
-=== "pip, docker"
+``` yaml hl_lines="2-5"
+site_name: My site
+site_url: https://mydomain.org/mysite
+theme:
+  name: material
+```
 
-    ``` yaml
-    theme:
-      name: material
-    ```
+The `site_url` setting is important for a number of reasons.
+By default, MkDocs will assume that your site is hosted at the root of
+your domain. This is not the case, for example, when [publishing to GitHub
+pages] - unless you use a custom domain. Another reason is that some of the
+plugins require the `site_url` to be set, so you should always do this.
 
-=== "git"
+  [publishing to GitHub pages]: publishing-your-site.md#github-pages
+  [installation methods]: getting-started.md#installation
 
-    ``` yaml
-    theme:
-      name: null
-      custom_dir: mkdocs-material/material
+???+ tip "Recommended: [configuration validation and auto-complete]"
 
-      # 404 page
-      static_templates:
-        - 404.html
+    In order to minimize friction and maximize productivity, Material for MkDocs
+    provides its own [schema.json][^1] for `mkdocs.yml`. If your editor supports
+    YAML schema validation, it's definitely recommended to set it up:
 
-      # Necessary for search to work properly
-      include_search_page: false
-      search_index_only: true
+    === "Visual Studio Code"
 
-      # Default values, taken from mkdocs_theme.yml
-      language: en
-      font:
-        text: Roboto
-        code: Roboto Mono
-      favicon: assets/favicon.png
-      icon:
-        logo: logo
-    ```
+        1.  Install [`vscode-yaml`][vscode-yaml] for YAML language support.
+        2.  Add the schema under the `yaml.schemas` key in your user or
+            workspace [`settings.json`][settings.json]:
 
-_If you cloned Material for MkDocs from GitHub, you must list all of the themes'
-defaults, because_ [`mkdocs_theme.yml`][3] _is not loaded automatically as
-[described in the official documentation][4]._
+            ``` json
+            {
+              "yaml.schemas": {
+                "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+              },
+              "yaml.customTags": [ // (1)!
+                "!ENV scalar",
+                "!ENV sequence",
+                "!relative scalar",
+                "tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+                "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+                "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format",
+                "tag:yaml.org,2002:python/object/apply:pymdownx.slugs.slugify mapping"
+              ]
+            }
+            ```
 
-  [2]: getting-started.md#installation
-  [3]: https://github.com/squidfunk/mkdocs-material/blob/master/src/mkdocs_theme.yml
-  [4]: https://www.mkdocs.org/user-guide/custom-themes/#creating-a-custom-theme
+            1.  This setting is necessary if you plan to use [icons and emojis],
+                or Visual Studio Code will show errors on certain lines.
+
+    === "Other"
+
+        1.  Ensure your editor of choice has support for YAML schema validation.
+        2.  Add the following lines at the top of `mkdocs.yml`:
+
+            ``` yaml
+            # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+            ```
+
+  [^1]:
+    If you're a MkDocs plugin or Markdown extension author and your project
+    works with Material for MkDocs, you're very much invited to contribute a
+    schema for your [extension] or [plugin] as part of a pull request on GitHub.
+    If you already have a schema defined, or wish to self-host your schema to
+    reduce duplication, you can add it via [$ref].
+
+  [configuration validation and auto-complete]: https://x.com/squidfunk/status/1487746003692400642
+  [schema.json]: schema.json
+  [vscode-yaml]: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
+  [settings.json]: https://code.visualstudio.com/docs/getstarted/settings
+  [extension]: https://github.com/squidfunk/mkdocs-material/tree/master/docs/schema/extensions
+  [plugin]: https://github.com/squidfunk/mkdocs-material/tree/master/docs/schema/plugins
+  [$ref]: https://json-schema.org/understanding-json-schema/structuring.html#ref
+  [icons and emojis]: reference/icons-emojis.md
 
 ### Advanced configuration
 
-Material for MkDocs comes with many configuration options. The _setup_ section
+Material for MkDocs comes with many configuration options. The setup section
 explains in great detail how to configure and customize colors, fonts, icons
 and much more:
 
-<div class="tx-columns" markdown="1">
+<div class="mdx-columns" markdown>
 
-- [Changing the colors][5]
-- [Changing the fonts][6]
-- [Changing the language][7]
-- [Changing the logo and icons][8]
-- [Setting up navigation][9]
-- [Setting up site search][10]
-- [Setting up site analytics][11]
-- [Setting up versioning][12]
-- [Setting up the header][13]
-- [Setting up the footer][14]
-- [Adding a git repository][15]
-- [Adding a comment system][16]
+- [Changing the colors]
+- [Changing the fonts]
+- [Changing the language]
+- [Changing the logo and icons]
+- [Ensuring data privacy]
+- [Setting up navigation]
+- [Setting up site search]
+- [Setting up site analytics]
+- [Setting up social cards]
+- [Setting up a blog]
+- [Setting up tags]
+- [Setting up versioning]
+- [Setting up the header]
+- [Setting up the footer]
+- [Adding a git repository]
+- [Adding a comment system]
+- [Building an optimized site]
+- [Building for offline usage]
 
 </div>
 
-  [5]: setup/changing-the-colors.md
-  [6]: setup/changing-the-fonts.md
-  [7]: setup/changing-the-language.md
-  [8]: setup/changing-the-logo-and-icons.md
-  [9]: setup/setting-up-navigation.md
-  [10]: setup/setting-up-site-search.md
-  [11]: setup/setting-up-site-analytics.md
-  [12]: setup/setting-up-versioning.md
-  [13]: setup/setting-up-the-header.md
-  [14]: setup/setting-up-the-footer.md
-  [15]: setup/adding-a-git-repository.md
-  [16]: setup/adding-a-comment-system.md
+Furthermore, see the list of supported [Markdown extensions] that are natively
+integrated with Material for MkDocs, delivering an unprecedented low-effort
+technical writing experience.
+
+  [Changing the colors]: setup/changing-the-colors.md
+  [Changing the fonts]: setup/changing-the-fonts.md
+  [Changing the language]: setup/changing-the-language.md
+  [Changing the logo and icons]: setup/changing-the-logo-and-icons.md
+  [Ensuring data privacy]: setup/ensuring-data-privacy.md
+  [Setting up navigation]: setup/setting-up-navigation.md
+  [Setting up site search]: setup/setting-up-site-search.md
+  [Setting up site analytics]: setup/setting-up-site-analytics.md
+  [Setting up social cards]: setup/setting-up-social-cards.md
+  [Setting up a blog]: setup/setting-up-a-blog.md
+  [Setting up tags]: setup/setting-up-tags.md
+  [Setting up versioning]: setup/setting-up-versioning.md
+  [Setting up the header]: setup/setting-up-the-header.md
+  [Setting up the footer]: setup/setting-up-the-footer.md
+  [Adding a git repository]: setup/adding-a-git-repository.md
+  [Adding a comment system]: setup/adding-a-comment-system.md
+  [Building for offline usage]: setup/building-for-offline-usage.md
+  [Building an optimized site]: setup/building-an-optimized-site.md
+  [Markdown extensions]: setup/extensions/index.md
+
+## Templates
+
+If you want to jump start a new project, you can use one of our growing
+collection of templates:
+
+<div class="grid cards" markdown>
+
+-   :octicons-repo-template-24: &nbsp; __[Blog][blog-template]__
+
+    ---
+
+    Create a blog
+
+-   :octicons-repo-template-24: &nbsp; __[Social cards][social-cards-template]__
+
+    ---
+
+    Create documentation with social cards
+
+</div>
+
+[blog-template]: https://github.com/mkdocs-material/create-blog
+[social-cards-template]: https://github.com/mkdocs-material/create-social-cards
 
 ## Previewing as you write
 
@@ -127,13 +195,22 @@ MkDocs includes a live preview server, so you can preview your changes as you
 write your documentation. The server will automatically rebuild the site upon
 saving. Start it with:
 
+``` sh
+mkdocs serve # (1)!
 ```
-mkdocs serve
-```
+
+1.  If you have a large documentation project, it might take minutes until
+    MkDocs has rebuilt all pages for you to preview. If you're only interested
+    in the current page, the [`--dirtyreload`][--dirtyreload] flag will make
+    rebuilds much faster:
+
+    ```
+    mkdocs serve --dirtyreload
+    ```
 
 If you're running Material for MkDocs from within Docker, use:
 
-=== "Unix"
+=== "Unix, Powershell"
 
     ```
     docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
@@ -145,12 +222,13 @@ If you're running Material for MkDocs from within Docker, use:
     docker run --rm -it -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material
     ```
 
-Point your browser to [localhost:8000][17] and you should see:
+Point your browser to [localhost:8000][live preview] and you should see:
 
-[![Creating your site][18]][18]
+[![Creating your site]][Creating your site]
 
-  [17]: http://localhost:8000
-  [18]: assets/screenshots/creating-your-site.png
+  [--dirtyreload]: https://www.mkdocs.org/about/release-notes/#support-for-dirty-builds-990
+  [live preview]: http://localhost:8000
+  [Creating your site]: assets/screenshots/creating-your-site.png
 
 ## Building your site
 
@@ -161,10 +239,31 @@ files with:
 mkdocs build
 ```
 
+If you're running Material for MkDocs from within Docker, use:
+
+=== "Unix, Powershell"
+
+    ```
+    docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build
+    ```
+
+=== "Windows"
+
+    ```
+    docker run --rm -it -v "%cd%":/docs squidfunk/mkdocs-material build
+    ```
+
 The contents of this directory make up your project documentation. There's no
 need for operating a database or server, as it is completely self-contained.
-The site can be hosted on [GitHub Pages][19], [GitLab Pages][20], a CDN of your
-choice or your private web space.
+The site can be hosted on [GitHub Pages], [GitLab Pages], a CDN of your choice
+or your private web space.
 
-  [19]: publishing-your-site.md#github-pages
-  [20]: publishing-your-site.md#gitlab-pages
+  [GitHub Pages]: publishing-your-site.md#github-pages
+  [GitLab pages]: publishing-your-site.md#gitlab-pages
+
+If you intend to distribute your documentation as a set of files to be
+read from a local filesystem rather than a web server (such as in a
+`.zip` file), please read the notes about [building for offline
+usage].
+
+  [building for offline usage]: setup/building-for-offline-usage.md

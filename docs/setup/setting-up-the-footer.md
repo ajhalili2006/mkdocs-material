@@ -1,72 +1,91 @@
----
-template: overrides/main.html
----
-
 # Setting up the footer
 
 The footer of your project documentation is a great place to add links to
-websites or platforms you or your company are using as additional marketing 
-channels, e.g. :fontawesome-brands-medium:{: style="color: #00AB6C" },
-:fontawesome-brands-twitter:{: style="color: #1DA1F2" } or
-:fontawesome-brands-facebook:{: style="color: #4267B2" }, which can be
-configured via `mkdocs.yml`.
+websites or platforms you or your company are using as additional marketing
+channels, e.g. :fontawesome-brands-mastodon:{ style="color: #5A4CE0" } or
+:fontawesome-brands-youtube:{ style="color: #EE0F0F" }, which you can easily
+configure via `mkdocs.yml`.
 
 ## Configuration
 
+### Navigation
+
+<!-- md:version 9.0.0 -->
+<!-- md:feature -->
+
+The footer can include links to the previous and next page of the current page.
+If you wish to enable this behavior, add the following lines to `mkdocs.yml`:
+
+``` yaml
+theme:
+  features:
+    - navigation.footer
+```
+
 ### Social links
 
-[:octicons-file-code-24: Source][1] ·
-:octicons-milestone-24: Default: _none_
+<!-- md:version 1.0.0 -->
+<!-- md:default none -->
 
-All _social links_ are rendered next to the copyright information as part of the 
-footer of your project documentation. Add a list of social links in `mkdocs.yml` 
+Social links are rendered next to the copyright notice as part of the
+footer of your project documentation. Add a list of social links in `mkdocs.yml`
 with:
 
 ``` yaml
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/squidfunk
+    - icon: fontawesome/brands/mastodon # (1)!
+      link: https://fosstodon.org/@squidfunk
 ```
 
-For each entry, the following fields are available:
+1.  Enter a few keywords to find the perfect icon using our [icon search] and
+    click on the shortcode to copy it to your clipboard:
 
-`icon`{: #icon }
+    <div class="mdx-iconsearch" data-mdx-component="iconsearch">
+      <input class="md-input md-input--stretch mdx-iconsearch__input" placeholder="Search icon" data-mdx-component="iconsearch-query" value="mastodon" />
+      <div class="mdx-iconsearch-result" data-mdx-component="iconsearch-result" data-mdx-mode="file">
+        <div class="mdx-iconsearch-result__meta"></div>
+        <ol class="mdx-iconsearch-result__list"></ol>
+      </div>
+    </div>
 
-:   :octicons-milestone-24: Default: _none_ · :octicons-alert-24: Required –
-    This field must point to a valid icon path referencing [any icon bundled
-    with the theme][2], or the build will not succeed. Some popular choices:
+The following properties are available for each link:
 
-    * :fontawesome-brands-behance: – `fontawesome/brands/behance`
-    * :fontawesome-brands-docker: – `fontawesome/brands/docker`
+<!-- md:option social.icon -->
+
+:   <!-- md:default none --> <!-- md:flag required -->
+    This property must contain a valid path to any icon bundled with the theme,
+    or the build will not succeed. Some popular choices:
+
     * :fontawesome-brands-github: – `fontawesome/brands/github`
+    * :fontawesome-brands-gitlab: – `fontawesome/brands/gitlab`
+    * :fontawesome-brands-x-twitter: – `fontawesome/brands/x-twitter`
+    * :fontawesome-brands-mastodon: – `fontawesome/brands/mastodon`
+      <small>automatically adds [`rel=me`][rel=me]</small>
+    * :fontawesome-brands-docker: – `fontawesome/brands/docker`
+    * :fontawesome-brands-facebook: – `fontawesome/brands/facebook`
     * :fontawesome-brands-instagram: – `fontawesome/brands/instagram`
     * :fontawesome-brands-linkedin: – `fontawesome/brands/linkedin`
-    * :fontawesome-brands-medium: – `fontawesome/brands/medium`
-    * :fontawesome-brands-pied-piper-alt: – `fontawesome/brands/pied-piper-alt`
-    * :fontawesome-brands-product-hunt: – `fontawesome/brands/product-hunt`
     * :fontawesome-brands-slack: – `fontawesome/brands/slack`
-    * :fontawesome-brands-twitter: – `fontawesome/brands/twitter`
+    * :fontawesome-brands-discord: – `fontawesome/brands/discord`
+    * :fontawesome-brands-pied-piper-alt: – `fontawesome/brands/pied-piper-alt`
 
-  [1]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/social.html
-  [2]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
+<!-- md:option social.link -->
 
-`link`{: #link }
-
-:   :octicons-milestone-24: Default: _none_ · :octicons-alert-24: Required –
-    This field must contain a valid relative or absolute URL including the URI 
+:   <!-- md:default none --> <!-- md:flag required -->
+    This property must be set to a relative or absolute URL including the URI
     scheme. All URI schemes are supported, including `mailto` and `bitcoin`:
 
-    === "Twitter"
+    === ":fontawesome-brands-mastodon: Mastodon"
 
         ``` yaml
         extra:
           social:
-            - icon: fontawesome/brands/twitter
-              link: https://twitter.com/squidfunk
+            - icon: fontawesome/brands/mastodon
+              link: https://fosstodon.org/@squidfunk
         ```
 
-    === "Email address"
+    === ":octicons-mail-16: Email"
 
         ``` yaml
         extra:
@@ -75,41 +94,42 @@ For each entry, the following fields are available:
               link: mailto:<email-address>
         ```
 
-`name`{: #name }
+<!-- md:option social.name -->
 
-:   :octicons-milestone-24: Default: _domain name from_ `link`_, if available_ –
-    This field is used as the link's `title` attribute and can be set to a 
+:   <!-- md:default _domain name from_ `link`_, if available_ -->
+    This property is used as the link's `title` attribute and can be set to a
     discernable name to improve accessibility:
 
     ``` yaml
     extra:
       social:
-        - icon: fontawesome/brands/twitter
-          link: https://twitter.com/squidfunk
-          name: squidfunk on Twitter
+        - icon: fontawesome/brands/mastodon
+          link: https://fosstodon.org/@squidfunk
+          name: squidfunk on Fosstodon
     ```
+
+  [icon search]: ../reference/icons-emojis.md#search
+  [rel=me]: https://docs.joinmastodon.org/user/profile/#verification
 
 ### Copyright notice
 
-[:octicons-file-code-24: Source][3] · 
-:octicons-milestone-24: Default: _none_
+<!-- md:version 0.1.0 -->
+<!-- md:default none -->
 
-A custom _copyright banner_ can be rendered as part of the footer, which is
+A custom copyright banner can be rendered as part of the footer, which is
 displayed next to the social links. It can be defined as part of `mkdocs.yml`:
 
 ``` yaml
 copyright: Copyright &copy; 2016 - 2020 Martin Donath
 ```
 
-  [3]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/footer.html
+### Generator notice
 
-### Remove generator
-
-[:octicons-file-code-24: Source][4] ·
-[:octicons-heart-fill-24:{: .tx-heart } Insiders only][4]{: .tx-insiders }
+<!-- md:version 7.3.0 -->
+<!-- md:default `true` -->
 
 The footer displays a _Made with Material for MkDocs_ notice to denote how
-the site was generated. The notice can be removed with the following setting
+the site was generated. The notice can be removed with the following option
 via `mkdocs.yml`:
 
 ``` yaml
@@ -117,18 +137,51 @@ extra:
   generator: false
 ```
 
-  [4]: ../insiders.md
+!!! info "Please read this before removing the generator notice"
+
+    The subtle __Made with Material for MkDocs__ hint in the footer is one of
+    the reasons why this project is so popular, as it tells the user how the
+    site is generated, helping new users to discover this project. Before
+    removing please consider that you're enjoying the benefits of @squidfunk's
+    work for free, as this project is Open Source and has a permissive license.
+    Thousands of hours went into this project, most of them
+    without any financial return.
+
+    Thus, if you remove this notice, please consider [sponsoring][Insiders] the
+    project. __Thank you__ :octicons-heart-fill-24:{ .mdx-heart .mdx-insiders }
+
+  [Insiders]: ../insiders/index.md
+
+## Usage
+
+### Hiding prev/next links
+
+The footer navigation showing links to the previous and next page can be hidden
+with the front matter `hide` property. Add the following lines at the top of a
+Markdown file:
+
+``` yaml
+---
+hide:
+  - footer
+---
+
+# Page title
+...
+```
 
 ## Customization
 
-### Custom icons
+### Custom copyright
 
-[:octicons-file-code-24: Source][2] ·
-:octicons-mortar-board-24: Difficulty: _moderate_
+<!-- md:version 8.0.0 -->
+<!-- md:flag customization -->
 
-The social links feature uses the standard [icon integration][5] of Material for
-MkDocs. If you want to use custom icons, follow the guide explaining how to
-add [additional icons][6].
+In order to customize and override the [copyright notice], [extend the theme]
+and [override the `copyright.html` partial][overriding partials], which normally
+includes the `copyright` property set in `mkdocs.yml`.
 
-  [5]: changing-the-logo-and-icons.md#icons
-  [6]: changing-the-logo-and-icons.md#additional-icons
+  [copyright notice]: #copyright-notice
+  [generator notice]: #generator-notice
+  [extend the theme]: ../customization.md#extending-the-theme
+  [overriding partials]: ../customization.md#overriding-partials

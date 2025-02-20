@@ -1,48 +1,43 @@
 <p align="center">
   <a href="https://squidfunk.github.io/mkdocs-material/">
-    <img src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.png" width="320" alt="Material for MkDocs">
+    <img src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.svg" width="320" alt="Material for MkDocs">
   </a>
 </p>
 
 <p align="center">
   <strong>
-    A 
-    <a href="https://material.io/">Material Design</a> 
-    theme for 
+    A powerful documentation framework on top of
     <a href="https://www.mkdocs.org/">MkDocs</a>
   </strong>
 </p>
 
 <p align="center">
   <a href="https://github.com/squidfunk/mkdocs-material/actions"><img
-    src="https://github.com/squidfunk/mkdocs-material/workflows/build/badge.svg?branch=master"
+    src="https://github.com/squidfunk/mkdocs-material/workflows/build/badge.svg"
     alt="Build"
   /></a>
   <a href="https://pypistats.org/packages/mkdocs-material"><img
-    src="https://img.shields.io/pypi/dm/mkdocs-material.svg" 
+    src="https://img.shields.io/pypi/dm/mkdocs-material.svg"
     alt="Downloads"
   /></a>
-  <a href="https://gitter.im/squidfunk/mkdocs-material"><img 
-    src="https://badges.gitter.im/squidfunk/mkdocs-material.svg" 
-    alt="Chat on Gitter"
-  /></a>
-  <a href="https://pypi.org/project/mkdocs-material"><img 
-    src="https://img.shields.io/pypi/v/mkdocs-material.svg" 
+  <a href="https://pypi.org/project/mkdocs-material"><img
+    src="https://img.shields.io/pypi/v/mkdocs-material.svg"
     alt="Python Package Index"
   /></a>
-  <a href="https://hub.docker.com/r/squidfunk/mkdocs-material/"><img 
-    src="https://img.shields.io/docker/pulls/squidfunk/mkdocs-material" 
+  <a href="https://hub.docker.com/r/squidfunk/mkdocs-material/"><img
+    src="https://img.shields.io/docker/pulls/squidfunk/mkdocs-material"
     alt="Docker Pulls"
   /></a>
-  <a href="https://squidfunk.github.io/mkdocs-material/insiders/"><img
-    src="https://img.shields.io/static/v1?label=%E2%86%92&message=insiders&color=e91e63"
+  <a href="https://github.com/sponsors/squidfunk"><img
+    src="https://img.shields.io/github/sponsors/squidfunk"
+    alt="Sponsors"
   /></a>
 </p>
 
 <p align="center">
-  Create a branded static site from a set of Markdown files to host the
-  documentation of your Open Source or commercial project – customizable,
-  searchable, mobile-friendly, 40+ languages. Set up in 5 minutes.
+  Write your documentation in Markdown and create a professional static site for
+  your Open Source or commercial project in minutes – searchable, customizable,
+  more than 60 languages, for all devices.
 </p>
 
 <p align="center">
@@ -53,58 +48,199 @@
 
 <p align="center">
   <em>
-    A demo is worth a thousand words — check it out at
+    Check out the demo –
     <a
       href="https://squidfunk.github.io/mkdocs-material/"
     >squidfunk.github.io/mkdocs-material</a>.
   </em>
 </p>
 
-## Features
+<h2></h2>
+<p id="premium-sponsors">&nbsp;</p>
+<p align="center"><strong>Silver sponsors</strong></p>
+<p align="center">
+  <a href="https://fastapi.tiangolo.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-fastapi.png" height="120"
+  /></a>
+  <a href="https://www.trendpop.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-trendpop.png" height="120"
+  /></a>
+  <a href="https://documentation.sailpoint.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-sailpoint.png" height="120"
+  /></a>
+  <a href="https://futureplc.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-future.svg" height="120"
+  /></a>
+  <a href="https://opensource.siemens.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-siemens.png" height="120"
+  /></a>
+  <a href="https://pydantic.dev/logfire/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-logfire.png" height="120"
+  /></a>
+</p>
+<p>&nbsp;</p>
+<p align="center"><strong>Bronze sponsors</strong></p>
+<p align="center">
+  <a href="https://cirrus-ci.org/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-cirrus-ci.png" height="58"
+  /></a>
+  <a href="https://docs.baslerweb.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-basler.png" height="58"
+  /></a>
+  <a href="https://kx.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-kx.png" height="58"
+  /></a>
+  <a href="https://orion-docs.prefect.io/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-prefect.png" height="58"
+  /></a>
+  <a href="https://www.zenoss.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-zenoss.png" height="58"
+  /></a>
+  <a href="https://docs.posit.co" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-posit.png" height="58"
+  /></a>
+  <a href="https://n8n.io" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-n8n.png" height="58"
+  /></a>
+  <a href="https://www.dogado.de" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-dogado.png" height="58"
+  /></a>
+  <a href="https://wwt.com" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-wwt.png" height="58"
+  /></a>
+  <a href="https://coda.io" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-coda.png" height="58"
+  /></a>
+  <a href="https://elastic.co" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-elastic.png" height="58"
+  /></a>
+  <a href="https://ipfabric.io/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-ip-fabric.png" height="58"
+  /></a>
+  <a href="https://www.apex.ai/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-apex-ai.png" height="58"
+  /></a>
+  <a href="https://jitterbit.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-jitterbit.png" height="58"
+  /></a>
+  <a href="https://sparkfun.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-sparkfun.png" height="58"
+  /></a>
+  <a href="https://eccenca.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-eccenca.png" height="58"
+  /></a>
+  <a href="https://neptune.ai/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-neptune-ai.png" height="58"
+  /></a>
+  <!-- <a href="https://cash.app/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-cashapp.png" height="58"
+  /></a> -->
+  <a href="https://rackn.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-rackn.png" height="58"
+  /></a>
+  <a href="https://civicactions.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-civic-actions.png" height="58"
+  /></a>
+  <a href="https://bitcrowd.net/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-bitcrowd.png" height="58"
+  /></a>
+  <a href="https://getscreen.me/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-getscreenme.png" height="58"
+  /></a>
+  <a href="https://botcity.dev/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-botcity.png" height="58"
+  /></a>
+  <a href="https://www.springernature.com/gp" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-sn-technology.png" height="58"
+  /></a>
+  <a href="https://kolena.io/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-kolena.png" height="58"
+  /></a>
+  <a href="https://www.evergiving.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-evergiving.png" height="58"
+  /></a>
+  <a href="https://koor.tech/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-koor.png" height="58"
+  /></a>
+  <a href="https://astral.sh/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-astral.png" height="58"
+  /></a>
+  <a href="https://oikolab.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-oikolab.png" height="58"
+  /></a>
+  <a href="https://www.buhlergroup.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-buhler.png" height="58"
+  /></a>
+  <a href="https://3dr.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-3dr.png" height="58"
+  /></a>
+  <a href="https://spotware.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-spotware.png" height="58"
+  /></a>
+  <a href="https://milfordasset.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-milford.png" height="58"
+  /></a>
+  <a href="https://www.lechler.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-lechler.png" height="58"
+  /></a>
+  <a href="https://invers.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-invers.png" height="58"
+  /></a>
+  <a href="https://maxar.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-maxar.png" height="58"
+  /></a>
+  <a href="https://www.equipmentshare.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-equipmentshare.png" height="58"
+  /></a>
+  <a href="https://hummingbot.org/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-hummingbot.png" height="58"
+  /></a>
+  <a href="https://octoperf.com/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-octoperf.png" height="58"
+  /></a>
+  <a href="https://intercomestibles.ch/" target=_blank><img
+    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/sponsor-intercomestibles.png" height="58"
+  /></a>
+</p>
+<p>&nbsp;</p>
 
-* **It's just Markdown** — write your technical documentation in plain Markdown
-  – no need to know HTML, JavaScript, or CSS. Material for MkDocs will do the
-  heavy lifting and convert your writing to a beautiful and functional website.
+## Everything you would expect
 
-* **Responsive by design** — built from the ground up to work on all sorts of 
-  devices – from mobile phones to widescreens. The underlying fluid layout will 
-  always adapt perfectly to the available screen space.
+### It's just Markdown
 
-* **Static, yet searchable** — almost magically, your technical documentation 
-  website will be searchable without any further ado. Material for MkDocs comes
-  with built-in search – no server needed – that will instantly answer your
-  users' queries.
+Focus on the content of your documentation and create a professional static site
+in minutes. No need to know HTML, CSS or JavaScript – let Material for MkDocs do
+the heavy lifting for you.
 
-* **Many configuration options** — change the color palette, font families, 
-  language, icons, favicon and logo. Add a source repository link, links to your
-  social profiles, Google Analytics and Disqus - all with a few lines of code.
+### Works on all devices
 
-* **Truly international** — thanks to many contributors, Material for MkDocs 
-  includes translations for more than 40 languages and offers full native RTL 
-  (right-to-left) support for languages such as Arabic, Persian (Farsi) and
-  Hebrew.
+Serve your documentation with confidence – Material for MkDocs automatically
+adapts to perfectly fit the available screen estate, no matter the type or size
+of the viewing device. Desktop. Tablet. Mobile. All great.
 
-* **Accessible** — Material for MkDocs provides extensible keyboard navigation
-  and semantic markup including role attributes and landmarks. Furthermore, the
-  layout is entirely based on `rem` values, respecting the user's default font
-  size.
+### Made to measure
 
-* **Beyond GitHub Markdown** — integrates natively with Python Markdown
-  Extensions, offering additional elements like callouts, tabbed content
-  containers, mathematical formulas, critic markup, task lists, and emojis.
+Make it yours – change the colors, fonts, language, icons, logo, and more with
+a few lines of configuration. Material for MkDocs can be easily extended and
+provides many options to alter appearance and behavior.
 
-* **Modern architecture** — Material for MkDocs's underlying codebase is built
-  with TypeScript, RxJS, and SCSS, and is compiled with Webpack, bringing
-  excellent possibilities for theme extension and customization.
+### Fast and lightweight
 
-_Material for MkDocs uses the [sponsorware][2] release strategy, which means
-that new features are first exclusively released to sponsors as part of Material
-for MkDocs Insiders. Read on to learn [how sponsorship works][3], and how you
-can [become a sponsor][4]._
+Don't let your users wait – get incredible value with a small footprint by using
+one of the fastest themes available with excellent performance, yielding optimal
+search engine rankings and happy users that return.
 
-  [2]: https://github.com/sponsorware/docs
-  [3]: https://squidfunk.github.io/mkdocs-material/insiders/#how-sponsorship-works
-  [4]: https://squidfunk.github.io/mkdocs-material/insiders/#how-to-become-a-sponsor
+### Maintain ownership
+
+Own your documentation's complete sources and outputs, guaranteeing both
+integrity and security – no need to entrust the backbone of your product
+knowledge to third-party platforms. Retain full control.
+
+### Open Source
+
+You're in good company – choose a mature and actively maintained solution built
+with state-of-the-art Open Source technologies, trusted by more than 50,000
+individuals and organizations. Licensed under MIT.
 
 ## Quick start
 
@@ -114,69 +250,104 @@ Material for MkDocs can be installed with `pip`:
 pip install mkdocs-material
 ```
 
-Add the following line to `mkdocs.yml`:
+Add the following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
   name: material
 ```
 
-For other installation methods, configuration options, and a demo, visit
-[squidfunk.github.io/mkdocs-material][1]
+For detailed installation instructions, configuration options, and a demo, visit
+[squidfunk.github.io/mkdocs-material][Material for MkDocs]
 
-  [1]: https://squidfunk.github.io/mkdocs-material/
+  [Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/
 
-## Premium Sponsors
+## Trusted by ...
 
-<p>
-  <a href="https://docs.baslerweb.com/" target=_blank><img
-    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/basler.png" width="155"
-  /></a>
-  <a href="https://cirrus-ci.org/" target=_blank><img
-    src="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/sponsors/cirrus-ci.svg" width="155"
-  /></a>
-</p>
+### ... industry leaders
 
-## Users
+[ArXiv](https://info.arxiv.org),
+[Atlassian](https://atlassian.github.io/data-center-helm-charts/),
+[AWS](https://aws.github.io/copilot-cli/),
+[Bloomberg](https://bloomberg.github.io/selekt/),
+[CERN](http://abpcomputing.web.cern.ch/),
+[CloudFlare](https://cloudflare.github.io/itty-router-openapi/),
+[Datadog](https://datadoghq.dev/integrations-core/),
+[Google](https://google.github.io/accompanist/),
+[Harvard](https://informatics.fas.harvard.edu/),
+[Hewlett Packard](https://hewlettpackard.github.io/squest/),
+[HSBC](https://hsbc.github.io/pyratings/),
+[ING](https://ing-bank.github.io/baker/),
+[Intel](https://open-amt-cloud-toolkit.github.io/docs/),
+[JetBrains](https://jetbrains.github.io/projector-client/mkdocs/),
+[LinkedIn](https://linkedin.github.io/school-of-sre/),
+[Microsoft](https://microsoft.github.io/code-with-engineering-playbook/),
+[Mozilla](https://mozillafoundation.github.io/engineering-handbook/),
+[Netflix](https://netflix.github.io/titus/),
+[Red Hat](https://ansible.readthedocs.io/projects/lint/),
+[Roboflow](https://inference.roboflow.com/),
+[Salesforce](https://policy-sentry.readthedocs.io/),
+[SIEMENS](https://opensource.siemens.com/),
+[Slack](https://slackhq.github.io/circuit/),
+[Square](https://square.github.io/okhttp/),
+[Uber](https://uber-go.github.io/fx/),
+[Zalando](https://opensource.zalando.com/skipper/)
 
-* **Companies** — 
-  [AWS](https://aws.github.io/copilot-cli/),
-  [Binance](https://docs.binance.org/),
-  [Datadog](https://datadoghq.dev/integrations-core/),
-  [Google](https://google.github.io/xls/),
-  [ING](https://ing-bank.github.io/baker/),
-  [LinkedIn](https://linkedin.github.io/school-of-sre/),
-  [Microsoft](https://www.electionguard.vote/),
-  [Netflix](https://netflix.github.io/titus/),
-  [Salesforce](https://policy-sentry.readthedocs.io/en/latest/),
-  [SAP](https://sap.github.io/ui5-tooling/),
-  [SoundCloud](https://intervene.dev/),
-  [Square](https://square.github.io/okhttp/),
-  [Uber](https://ludwig-ai.github.io/ludwig-docs/getting_started/),
-  [Zalando](https://opensource.zalando.com/skipper/)
+### ... and successful Open Source projects
 
-* **Open Source** —
-  [AutoKeras](https://autokeras.com/),
-  [BFE](https://www.bfe-networks.net/),
-  [Crystal](https://crystal-lang.org/reference/),
-  [FastAPI](https://fastapi.tiangolo.com/),
-  [Kubernetes](https://kops.sigs.k8s.io/),
-  [kSQL](https://docs.ksqldb.io/),
-  [Nokogiri](https://nokogiri.org/),
-  [OpenFaaS](https://docs.openfaas.com/),
-  [Pi-Hole](https://docs.pi-hole.net/),
-  [Pydantic](https://pydantic-docs.helpmanual.io/),
-  [Renovatebot](https://docs.renovatebot.com/),
-  [Traefik](https://docs.traefik.io/),
-  [Vapor](https://docs.vapor.codes/),
-  [ZeroNet](https://zeronet.io/docs/),
-  [WTF](https://wtfutil.com/)
+[Amp](https://amp.rs/docs/),
+[Arduino](https://arduino.github.io/arduino-cli/),
+[Auto-GPT](https://docs.agpt.co/),
+[AutoKeras](https://autokeras.com/),
+[BFE](https://www.bfe-networks.net/),
+[CentOS](https://docs.infra.centos.org/),
+[Crystal](https://crystal-lang.org/reference/),
+[eBPF](https://ebpf-go.dev/),
+[Electron](https://www.electron.build/),
+[FastAPI](https://fastapi.tiangolo.com/),
+[FlatBuffers](https://flatbuffers.dev/),
+[Freqtrade](https://www.freqtrade.io/en/stable/),
+[GoReleaser](https://goreleaser.com/),
+[GraphRAG](https://microsoft.github.io/graphrag/),
+[HedgeDoc](https://docs.hedgedoc.org/),
+[Hummingbot](https://hummingbot.org/),
+[Knative](https://knative.dev/docs/),
+[Kubernetes](https://kops.sigs.k8s.io/),
+[kSQL](https://docs.ksqldb.io/),
+[LeakCanary](https://square.github.io/leakcanary/),
+[LlamaIndex](https://docs.llamaindex.ai/),
+[NetBox](https://netboxlabs.com/docs/netbox/en/stable/),
+[Nokogiri](https://nokogiri.org/),
+[OpenFaaS](https://docs.openfaas.com/),
+[OpenSSL](https://docs.openssl.org/),
+[Orchard Core](https://docs.orchardcore.net/en/latest/),
+[Percona](https://docs.percona.com/percona-monitoring-and-management/),
+[Pi-Hole](https://docs.pi-hole.net/),
+[Polars](https://docs.pola.rs/),
+[Pydantic](https://pydantic-docs.helpmanual.io/),
+[PyPI](https://docs.pypi.org/),
+[Quivr](https://core.quivr.com/),
+[Renovate](https://docs.renovatebot.com/),
+[RetroPie](https://retropie.org.uk/docs/),
+[Ruff](https://docs.astral.sh/ruff/),
+[Supervision](https://supervision.roboflow.com/latest/),
+[Textual](https://textual.textualize.io/),
+[Traefik](https://docs.traefik.io/),
+[Trivy](https://aquasecurity.github.io/trivy/),
+[Typer](https://typer.tiangolo.com/),
+[tinygrad](https://docs.tinygrad.org/),
+[Ultralytics](https://docs.ultralytics.com/),
+[UV](https://docs.astral.sh/uv/),
+[Vapor](https://docs.vapor.codes/),
+[WebKit](https://docs.webkit.org/),
+[WTF](https://wtfutil.com/),
+[ZeroNet](https://zeronet.io/docs/)
 
 ## License
 
 **MIT License**
 
-Copyright (c) 2016-2020 Martin Donath
+Copyright (c) 2016-2025 Martin Donath
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to

@@ -1,104 +1,121 @@
----
-template: overrides/main.html
----
-
 # Changing the logo and icons
 
-When installing Material for MkDocs, you immediately get access to _over 7.000 
-icons_ ready to be used for customization of specific parts of the theme and/or 
-when writing your documentation in Markdown. Not enough? You can also [add
-additional icons][1] with minimal effort.
+When installing Material for MkDocs, you immediately get access to _over 8,000
+icons_ ready to be used for customization of specific parts of the theme and/or
+when writing your documentation in Markdown. Not enough? You can also add
+[additional icons] with minimal effort.
 
-  [1]: #additional-icons
+  [additional icons]: #additional-icons
 
 ## Configuration
 
 ### Logo
 
-[:octicons-file-code-24: Source][2] ·
-:octicons-milestone-24: Default: `material/library`
+<!-- md:version 0.1.0 -->
+<!-- md:default `material/library` -->
 
-There're two ways to specify a _logo_: it must be a valid path to [any icon 
-bundled with the theme][3], or to a user-provided image located in the `docs`
-folder. Both can be set via `mkdocs.yml`:
+The logo can be changed to a user-provided image (any type, incl. `*.png` and
+`*.svg`) located in the `docs` folder, or to any icon bundled with the theme.
+Add the following lines to `mkdocs.yml`:
 
-=== "Icon"
-
-    ``` yaml
-    theme:
-      icon:
-        logo: material/library
-    ```
-
-=== "Image"
+=== ":octicons-image-16: Image"
 
     ``` yaml
     theme:
       logo: assets/logo.png
     ```
 
-  [2]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/logo.html
-  [3]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
+=== ":octicons-package-16: Icon, bundled"
+
+    ``` yaml
+    theme:
+      icon:
+        logo: material/library # (1)!
+    ```
+
+    1.  Enter a few keywords to find the perfect icon using our [icon search] and
+        click on the shortcode to copy it to your clipboard:
+
+        <div class="mdx-iconsearch" data-mdx-component="iconsearch">
+          <input class="md-input md-input--stretch mdx-iconsearch__input" placeholder="Search icon" data-mdx-component="iconsearch-query" value="material library" />
+          <div class="mdx-iconsearch-result" data-mdx-component="iconsearch-result" data-mdx-mode="file">
+            <div class="mdx-iconsearch-result__meta"></div>
+            <ol class="mdx-iconsearch-result__list"></ol>
+          </div>
+        </div>
+
+  [icon search]: ../reference/icons-emojis.md#search
+
+Normally, the logo in the header and sidebar links to the homepage of the
+documentation, which is the same as `site_url`. This behavior can be changed
+with the following configuration:
+
+``` yaml
+extra:
+  homepage: https://example.com
+```
 
 ### Favicon
 
-[:octicons-file-code-24: Source][4] ·
-:octicons-milestone-24: Default: `assets/images/favicon.png`
+<!-- md:version 0.1.0 -->
+<!-- md:default [`assets/images/favicon.png`][Favicon default] -->
 
-The _favicon_ can be changed to a path pointing to a user-provided image, which 
-must be located in the `docs` folder. It can be set via `mkdocs.yml`:
+The favicon can be changed to a path pointing to a user-provided image, which
+must be located in the `docs` folder. Add the following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
   favicon: images/favicon.png
 ```
 
-  [4]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html
+  [Favicon default]: https://github.com/squidfunk/mkdocs-material/blob/master/material/assets/images/favicon.png
 
-### Icons
+### Site icons
 
-[:octicons-file-code-24: Source][3] · [:octicons-workflow-24: Extension][5]
+[:octicons-tag-24: 9.2.0][Site icon support]
 
-The [Emoji][5] extension, which is part of [Python Markdown Extensions][6],
-adds the ability to __integrate icons__ in the `*.svg` file format, which are
-inlined when [building your site][7]:
+Most icons you see on your site, such as navigation icons, can also be changed. For example,
+to change the navigation arrows in the footer, add the following lines to `mkdocs.yml`:
 
-``` yaml
-markdown_extensions:
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+```yaml
+theme:
+  icon:
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
 ```
 
-The following icon sets are bundled with Material for MkDocs:
+The following is a complete list of customizable icons used by the theme:
 
-- :material-material-design: – [Material Design][8]
-- :fontawesome-brands-font-awesome-flag: – [FontAwesome][9]
-- :octicons-mark-github-16: – [Octicons][10]
+| Icon name    | Purpose                                                                       |
+|:-------------|:------------------------------------------------------------------------------|
+| `logo`       | See [Logo](#logo)                                                             |
+| `menu`       | Open drawer                                                                   |
+| `alternate`  | Change language                                                               |
+| `search`     | Search icon                                                                   |
+| `share`      | Share search                                                                  |
+| `close`      | Reset search, dismiss announcements                                           |
+| `top`        | Back-to-top button                                                            |
+| `edit`       | Edit current page                                                             |
+| `view`       | View page source                                                              |
+| `repo`       | Repository icon                                                               |
+| `admonition` | See [Admonition icons](../reference/admonitions.md#admonition-icons)          |
+| `tag`        | See [Tag icons and identifiers](setting-up-tags.md#tag-icons-and-identifiers) |
+| `previous`   | Previous page in footer, hide search on mobile                                |
+| `next`       | Next page in footer                                                           |
 
-If you want to add [additional icons][1], read on.
-
-  [5]: https://facelessuser.github.io/pymdown-extensions/extensions/emoji/
-  [6]: https://facelessuser.github.io/pymdown-extensions/
-  [7]: ../creating-your-site.md#building-your-site
-  [8]: https://materialdesignicons.com/
-  [9]: https://fontawesome.com/icons?d=gallery&m=free
-  [10]: https://octicons.github.com/
+  [Site icon support]: https://github.com/squidfunk/mkdocs-material/releases/tag/9.2.0
 
 ## Customization
 
 ### Additional icons
 
-[:octicons-file-code-24: Source][3] · 
-:octicons-mortar-board-24: Difficulty: _moderate_
-
-In order to add additional icons, [extend the theme][11], and create a folder
-named `.icons` in the [`custom_dir`][12] you want to use for overrides. Next,
-add your `*.svg` icons into a subfolder of the `.icons` folder. Let's say you 
-downloaded and unpacked the [Bootstrap][13] icon set, and want to add it to
+In order to use custom icons, [extend the theme] and create a new folder named
+`.icons` in the [`custom_dir`][custom_dir] you want to use for overrides.
+Next, add your `*.svg` icons into a subfolder of the `.icons` folder. Let's say
+you downloaded and unpacked the [Bootstrap] icon set, and want to add it to
 your project documentation. The structure of your project should look like this:
 
-``` sh
+``` { .sh .no-copy }
 .
 ├─ overrides/
 │  └─ .icons/
@@ -112,16 +129,38 @@ Then, add the following lines to `mkdocs.yml`:
 ``` yaml
 markdown_extensions:
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
       options:
         custom_icons:
           - overrides/.icons
 ```
 
-You should now be able to use the :fontawesome-brands-bootstrap: Bootstrap
-icons.
+You can now use all :fontawesome-brands-bootstrap: Bootstrap icons anywhere in
+Markdown files, as well as everywhere icons can be used in `mkdocs.yml`.
+However, note that the syntaxes are slightly different:
 
-  [11]: ../customization.md#extending-the-theme
-  [12]: https://www.mkdocs.org/user-guide/configuration/#custom_dir
-  [13]: https://icons.getbootstrap.com/
+- __Using icons in configuration__: take the path of the `*.svg` icon file
+  starting at the `.icons` folder and drop the file extension, e.g. for
+  `.icons/bootstrap/envelope-paper.svg`, use:
+
+    ``` yaml
+    theme:
+      icon:
+        logo: bootstrap/envelope-paper
+    ```
+
+- __Using icons in Markdown files__: additionally to taking the path from the
+  `.icons` folder as noted above, replace all `/` with `-` and enclose the icon
+  shortcode in two colons:
+
+    ```
+    :bootstrap-envelope-paper:
+    ```
+
+For further notes on icon usage, please consult the [icon reference].
+
+  [extend the theme]: ../customization.md#extending-the-theme
+  [custom_dir]: https://www.mkdocs.org/user-guide/configuration/#custom_dir
+  [Bootstrap]: https://icons.getbootstrap.com/
+  [icon reference]: ../reference/icons-emojis.md#using-icons

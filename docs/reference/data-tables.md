@@ -1,32 +1,40 @@
 ---
-template: overrides/main.html
+icon: material/table-edit
 ---
 
 # Data tables
 
 Material for MkDocs defines default styles for data tables – an excellent way
 of rendering tabular data in project documentation. Furthermore, customizations
-like [sortable tables][1] can be achieved with a third-party library and some
-[additional JavaScript][2].
+like [sortable tables] can be achieved with a third-party library and some
+[additional JavaScript].
 
-  [1]: #sortable-tables
-  [2]: ../customization.md#additional-javascript 
+  [sortable tables]: #sortable-tables
+  [additional JavaScript]: ../customization.md#additional-javascript
 
 ## Configuration
 
-None.
+This configuration enables Markdown table support, which should normally be
+enabled by default, but to be sure, add the following lines to `mkdocs.yml`:
+
+``` yaml
+markdown_extensions:
+  - tables
+```
+
+See additional configuration options:
+
+- [Tables]
+
+  [Tables]: ../setup/extensions/python-markdown.md#tables
 
 ## Usage
 
-### Using data tables
-
 Data tables can be used at any position in your project documentation and can
 contain arbitrary Markdown, including inline code blocks, as well as [icons and
-emojis][3].
+emojis]:
 
-_Example_:
-
-``` markdown
+``` markdown title="Data table"
 | Method      | Description                          |
 | ----------- | ------------------------------------ |
 | `GET`       | :material-check:     Fetch resource  |
@@ -34,7 +42,7 @@ _Example_:
 | `DELETE`    | :material-close:     Delete resource |
 ```
 
-_Result_:
+<div class="result" markdown>
 
 | Method      | Description                          |
 | ----------- | ------------------------------------ |
@@ -42,19 +50,19 @@ _Result_:
 | `PUT`       | :material-check-all: Update resource |
 | `DELETE`    | :material-close:     Delete resource |
 
-  [3]: icons-emojis.md
+</div>
+
+  [icons and emojis]: icons-emojis.md
 
 ### Column alignment
 
 If you want to align a specific column to the `left`, `center` or `right`, you
-can use the [regular Markdown syntax][4] placing `:` characters at the beginning
+can use the [regular Markdown syntax] placing `:` characters at the beginning
 and/or end of the divider.
 
 === "Left"
 
-    _Example_:
-
-    ``` markdown hl_lines="2"
+    ``` markdown hl_lines="2" title="Data table, columns aligned to left"
     | Method      | Description                          |
     | :---------- | :----------------------------------- |
     | `GET`       | :material-check:     Fetch resource  |
@@ -62,19 +70,19 @@ and/or end of the divider.
     | `DELETE`    | :material-close:     Delete resource |
     ```
 
-    _Result_:
+    <div class="result" markdown>
 
     | Method      | Description                          |
     | :---------- | :----------------------------------- |
     | `GET`       | :material-check:     Fetch resource  |
     | `PUT`       | :material-check-all: Update resource |
     | `DELETE`    | :material-close:     Delete resource |
+
+    </div>
 
 === "Center"
 
-    _Example_:
-
-    ``` markdown hl_lines="2"
+    ``` markdown hl_lines="2" title="Data table, columns centered"
     | Method      | Description                          |
     | :---------: | :----------------------------------: |
     | `GET`       | :material-check:     Fetch resource  |
@@ -82,19 +90,19 @@ and/or end of the divider.
     | `DELETE`    | :material-close:     Delete resource |
     ```
 
-    _Result_:
+    <div class="result" markdown>
 
     | Method      | Description                          |
     | :---------: | :----------------------------------: |
     | `GET`       | :material-check:     Fetch resource  |
     | `PUT`       | :material-check-all: Update resource |
     | `DELETE`    | :material-close:     Delete resource |
+
+    </div>
 
 === "Right"
 
-    _Example_:
-
-    ``` markdown hl_lines="2"
+    ``` markdown hl_lines="2" title="Data table, columns aligned to right"
     | Method      | Description                          |
     | ----------: | -----------------------------------: |
     | `GET`       | :material-check:     Fetch resource  |
@@ -102,7 +110,7 @@ and/or end of the divider.
     | `DELETE`    | :material-close:     Delete resource |
     ```
 
-    _Result_:
+    <div class="result" markdown>
 
     | Method      | Description                          |
     | ----------: | -----------------------------------: |
@@ -110,42 +118,41 @@ and/or end of the divider.
     | `PUT`       | :material-check-all: Update resource |
     | `DELETE`    | :material-close:     Delete resource |
 
-  [4]: https://www.markdownguide.org/extended-syntax/#tables
+    </div>
+
+  [regular Markdown syntax]: https://www.markdownguide.org/extended-syntax/#tables
 
 ## Customization
 
 ### Sortable tables
 
-If you want to make data tables sortable, you can add [tablesort][5], which is
+If you want to make data tables sortable, you can add [tablesort], which is
 natively integrated with Material for MkDocs and will also work with [instant
-loading][6] via [additional JavaScript][2]:
+loading] via [additional JavaScript]:
 
-=== "docs/javascripts/tables.js"
+=== ":octicons-file-code-16: `docs/javascripts/tablesort.js`"
 
     ``` js
-    app.document$.subscribe(function() {
-      var tables = document.querySelectorAll("article table")
+    document$.subscribe(function() {
+      var tables = document.querySelectorAll("article table:not([class])")
       tables.forEach(function(table) {
         new Tablesort(table)
       })
     })
     ```
 
-=== "mkdocs.yml"
+=== ":octicons-file-code-16: `mkdocs.yml`"
 
     ``` yaml
     extra_javascript:
-      - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
-      - javascripts/tables.js
+      - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+      - javascripts/tablesort.js
     ```
 
-_Note that [tablesort][5] provides alternative comparison implementations like
-numbers, dates, filesizes and month names. See the official documentation for
-more information._
+After applying the customization, data tables can be sorted by clicking on a
+column:
 
-_Example_:
-
-``` markdown
+``` markdown title="Data table, columns sortable"
 | Method      | Description                          |
 | ----------- | ------------------------------------ |
 | `GET`       | :material-check:     Fetch resource  |
@@ -153,7 +160,7 @@ _Example_:
 | `DELETE`    | :material-close:     Delete resource |
 ```
 
-_Result_:
+<div class="result" markdown>
 
 | Method      | Description                          |
 | ----------- | ------------------------------------ |
@@ -161,11 +168,24 @@ _Result_:
 | `PUT`       | :material-check-all: Update resource |
 | `DELETE`    | :material-close:     Delete resource |
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+</div>
+
+Note that [tablesort] provides alternative comparison implementations like
+numbers, filesizes, dates and month names. See the [tablesort documentation]
+[tablesort] for more information.
+
+<script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
 <script>
   var tables = document.querySelectorAll("article table")
   new Tablesort(tables.item(tables.length - 1));
 </script>
 
-  [5]: http://tristen.ca/tablesort/demo/
-  [6]: ../setup/setting-up-navigation.md#instant-loading
+  [tablesort]: http://tristen.ca/tablesort/demo/
+  [instant loading]: ../setup/setting-up-navigation.md#instant-loading
+
+### Import table from file
+
+The plugin [mkdocs-table-reader-plugin][table-reader-docs] allows you to
+import data from a CSV or Excel file.
+
+  [table-reader-docs]: https://timvink.github.io/mkdocs-table-reader-plugin/

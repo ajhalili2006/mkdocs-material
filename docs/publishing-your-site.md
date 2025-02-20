@@ -1,7 +1,3 @@
----
-template: overrides/main.html
----
-
 # Publishing your site
 
 The great thing about hosting project documentation in a `git` repository is
@@ -10,15 +6,15 @@ makes this ridiculously simple.
 
 ## GitHub Pages
 
-If you're already hosting your code on GitHub, [GitHub Pages][1] is certainly
+If you're already hosting your code on GitHub, [GitHub Pages] is certainly
 the most convenient way to publish your project documentation. It's free of
 charge and pretty easy to set up.
 
-  [1]: https://pages.github.com/
+  [GitHub Pages]: https://pages.github.com/
 
 ### with GitHub Actions
 
-Using [GitHub Actions][2] you can automate the deployment of your project
+Using [GitHub Actions] you can automate the deployment of your project
 documentation. At the root of your repository, create a new GitHub Actions
 workflow, e.g. `.github/workflows/ci.yml`, and copy and paste the following
 contents:
@@ -26,23 +22,63 @@ contents:
 === "Material for MkDocs"
 
     ``` yaml
-    name: ci
+    name: ci # (1)!
     on:
       push:
         branches:
-          - master
+          - master # (2)!
           - main
+    permissions:
+      contents: write
     jobs:
       deploy:
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v2
-          - uses: actions/setup-python@v2
+          - uses: actions/checkout@v4
+          - name: Configure Git Credentials
+            run: |
+              git config user.name github-actions[bot]
+              git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          - uses: actions/setup-python@v5
             with:
               python-version: 3.x
-          - run: pip install mkdocs-material
+          - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV # (3)!
+          - uses: actions/cache@v4
+            with:
+              key: mkdocs-material-${{ env.cache_id }}
+              path: .cache # (4)!
+              restore-keys: |
+                mkdocs-material-
+          - run: pip install mkdocs-material # (5)!
           - run: mkdocs gh-deploy --force
     ```
+
+    1.  You can change the name to your liking.
+
+    2.  At some point, GitHub renamed `master` to `main`. If your default branch
+        is named `master`, you can safely remove `main`, vice versa.
+
+    3.  Store the `cache_id` environmental variable to access it later during cache
+        `key` creation. The name is case-sensitive, so be sure to align it with `${{ env.cache_id }}`.
+
+        - The `--utc` option makes sure that each workflow runner uses the same time zone.
+        - The `%V` format assures a cache update once a week.
+        - You can change the format to `%F` to have daily cache updates.
+
+        You can read the [manual page] to learn more about the formatting options of the `date` command.
+
+    4.  Some Material for MkDocs plugins use [caching] to speed up repeated
+        builds, and store the results in the `.cache` directory.
+
+    5.  This is the place to install further [MkDocs plugins] or Markdown
+        extensions with `pip` to be used during the build:
+
+        ``` sh
+        pip install \
+          mkdocs-material \
+          mkdocs-awesome-pages-plugin \
+          ...
+        ```
 
 === "Insiders"
 
@@ -53,35 +89,64 @@ contents:
         branches:
           - master
           - main
+    permissions:
+      contents: write
     jobs:
       deploy:
         runs-on: ubuntu-latest
-        if: github.event.pull_request.head.repo.fork == false
+        if: github.event.repository.fork == false
         steps:
-          - uses: actions/checkout@v2
-          - uses: actions/setup-python@v2
+          - uses: actions/checkout@v4
+          - name: Configure Git Credentials
+            run: |
+              git config user.name github-actions[bot]
+              git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          - uses: actions/setup-python@v5
             with:
               python-version: 3.x
+          - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+          - uses: actions/cache@v4
+            with:
+              key: mkdocs-material-${{ env.cache_id }}
+              path: .cache # (1)!
+              restore-keys: |
+                mkdocs-material-
+          - run: apt-get install pngquant # (2)!
           - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
           - run: mkdocs gh-deploy --force
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }} # (3)!
     ```
 
+    1.  Some Material for MkDocs plugins use [caching] to speed up repeated
+        builds, and store the results in the `.cache` directory.
+
+    2.  This step is only necessary if you want to use the
+        [built-in optimize plugin] to automatically compress images.
+
+    3.  Remember to set the `GH_TOKEN` repository secret to the value of your
+        [personal access token] when deploying [Insiders], which can be done
+        using [GitHub secrets].
+
 Now, when a new commit is pushed to either the `master` or `main` branches,
-the static site is automatically built and deployed. Commit and push the file
-to your repository to see the workflow in action.
+the static site is automatically built and deployed. Push your changes to see
+the workflow in action.
+
+If the GitHub Page doesn't show up after a few minutes, go to the settings of
+your repository and ensure that the [publishing source branch] for your GitHub
+Page is set to `gh-pages`.
 
 Your documentation should shortly appear at `<username>.github.io/<repository>`.
 
-_Remember to set the_ `GH_TOKEN` _environment variable to the value of your
-[personal access token][3] when deploying [Insiders][4], which can be done
-using [secrets][5]._
-
-  [2]: https://github.com/features/actions
-  [3]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
-  [4]: insiders.md
-  [5]: https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+  [GitHub Actions]: https://github.com/features/actions
+  [MkDocs plugins]: https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins
+  [personal access token]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
+  [Insiders]: insiders/index.md
+  [built-in optimize plugin]: plugins/optimize.md
+  [GitHub secrets]: https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+  [publishing source branch]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+  [manual page]: https://man7.org/linux/man-pages/man1/date.1.html
+  [caching]: plugins/requirements/caching.md
 
 ### with MkDocs
 
@@ -92,55 +157,104 @@ the following command from the directory containing the `mkdocs.yml` file:
 mkdocs gh-deploy --force
 ```
 
+This will build your documentation and deploy it to a branch
+`gh-pages` in your repository. See [this overview in the MkDocs
+documentation] for more information. For a description of the
+arguments, see [the documentation for the command].
+
+  [this overview in the MkDocs documentation]: https://www.mkdocs.org/user-guide/deploying-your-docs/#project-pages
+  [the documentation for the command]: https://www.mkdocs.org/user-guide/cli/#mkdocs-gh-deploy
+
 ## GitLab Pages
 
-If you're hosting your code on GitLab, deploying to [GitLab Pages][6] can be
-done by using the [GitLab CI][7] task runner. At the root of your repository,
-create a task definition named `.gitlab-ci.yml` and copy and paste the
-following contents:
+If you're hosting your code on GitLab, deploying to [GitLab Pages] can be done
+by using the [GitLab CI] task runner. At the root of your repository, create a
+task definition named `.gitlab-ci.yml` and copy and paste the following
+contents:
 
 === "Material for MkDocs"
 
     ``` yaml
-    image: python:latest
     pages:
       stage: deploy
-      only:
-        - master
+      image: python:latest
       script:
         - pip install mkdocs-material
         - mkdocs build --site-dir public
       artifacts:
         paths:
           - public
+      rules:
+        - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
     ```
 
 === "Insiders"
 
     ``` yaml
-    image: python:latest
     pages:
       stage: deploy
-      only:
-        - master
-      script:
+      image: python:latest
+      script: # (1)!
         - pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
         - mkdocs build --site-dir public
       artifacts:
         paths:
           - public
+      rules:
+        - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
     ```
 
-Now, when a new commit is pushed to `master`, the static site is automatically
-built and deployed. Commit and push the file to your repository to see the
-workflow in action.
+    1.  Remember to set the `GH_TOKEN` repository secret to the value of your
+        [personal access token] when deploying [Insiders], which can be done
+        using [masked custom variables].
 
-Your documentation should shortly appear at `<username>.gitlab.io/<repository>`.
+Now, when a new commit is pushed to the [default branch] (typically `master` or
+`main`), the static site is automatically built and deployed. Commit and push
+the file to your repository to see the workflow in action.
 
-_Remember to set the_ `GH_TOKEN` _environment variable to the value of your
-[personal access token][3] when deploying [Insiders][4], which can be done
-using [masked custom variables][8]._
+Your documentation is not published under `<username>.gitlab.io/<repository>`
+by default since **GitLab 17.4** [^1]. However, if you prefer a cleaner URL
+structure, such as `<username>.gitlab.io/<repository>`, you need to adjust
+your configuration.
 
-  [6]: https://gitlab.com/pages
-  [7]: https://docs.gitlab.com/ee/ci/
-  [8]: https://docs.gitlab.com/ee/ci/variables/#create-a-custom-variable-in-the-ui
+To switch from a unique domain to the traditional URL structure, follow
+these steps:
+
+1.  Locate Your Repository
+2.  Go to **Settings › Pages** in the repository menu.
+3.  In the **Unique domain settings** section, **uncheck** the box labeled
+4.  **Use unique domain**.
+5.  Click **Save changes** to apply the update.
+
+Now you can reach your documentation under `<username>.gitlab.io/<repository>`.
+
+[^1]: [Release notes for Gitlab 17.4](https://about.gitlab.com/releases/2024/09/19/gitlab-17-4-released/)
+
+## Other
+
+Since we can't cover all possible platforms, we rely on community contributed
+guides that explain how to deploy websites built with Material for MkDocs to
+other providers:
+
+<div class="mdx-columns" markdown>
+
+- [:simple-cloudflarepages: Cloudflare Pages][Cloudflare Pages]
+- [:simple-digitalocean: DigitalOcean][DigitalOcean]
+- [:material-airballoon-outline: Fly.io][Flyio]
+- [:simple-netlify: Netlify][Netlify]
+- [:simple-vercel: Vercel][Vercel]
+- [:simple-scaleway: Scaleway][Scaleway]
+
+</div>
+
+  [GitLab Pages]: https://gitlab.com/pages
+  [GitLab CI]: https://docs.gitlab.com/ee/ci/
+  [masked custom variables]: https://docs.gitlab.com/ee/ci/variables/#mask-a-cicd-variable
+  [default branch]: https://docs.gitlab.com/ee/user/project/repository/branches/default.html
+  [Cloudflare Pages]: https://deborahwrites.com/guides/deploy-host-mkdocs/deploy-mkdocs-material-cloudflare/
+  [DigitalOcean]: https://deborahwrites.com/guides/deploy-host-mkdocs/deploy-mkdocs-material-digitalocean-app-platform/
+  [Flyio]: https://documentation.breadnet.co.uk/cloud/fly/mkdocs-on-fly/
+  [Netlify]: https://deborahwrites.com/guides/deploy-host-mkdocs/deploy-mkdocs-material-netlify/
+  [Vercel]: https://deborahwrites.com/guides/deploy-host-mkdocs/deploy-mkdocs-material-vercel/
+  [Scaleway]: https://www.scaleway.com/en/docs/tutorials/using-bucket-website-with-mkdocs/
+
